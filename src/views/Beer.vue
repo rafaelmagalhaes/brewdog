@@ -1,23 +1,23 @@
 <template>
   <section>
     <div class="row single__beer">
-      <div class="col-3">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
         <img :src="beer.image_url" class="img-fluid"/>
       </div>
-      <div class="col">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-9">
         <h1>{{beer.name}}</h1>
         <p>{{beer.description}}</p>
         <p>Ingredients</p>
 
-        <p>
-          <b>Malts</b> <span v-for="(malt,index) in beer.ingredients.malt" :key="index"> {{malt.name}}, </span>
+        <p v-if="beer.ingredients && beer.ingredients.malt.length">
+          <b>Malts</b> <span v-for="(m,index) in beer.ingredients.malt" :key="index"> {{m.name}}, </span>
         </p>
 
-        <p>
+        <p v-if="beer.ingredients && beer.ingredients.hops.length">
           <b>Hops</b> <span v-for="(hop,index) in beer.ingredients.hops" :key="index"> {{hop.name}}, </span>
         </p>
 
-        <p>
+        <p v-if="beer.ingredients && beer.ingredients.yeast">
           <b>Yeast</b> <span> {{beer.ingredients.yeast}} </span>
         </p>
       </div>
@@ -46,7 +46,11 @@ export default {
   .single__beer {
     & img {
       object-fit: contain;
-      height: 50%;
+      height: 600px;
+      width: 100%;
+      @media screen and (max-width: 700px) {
+        height: 350px;
+      }
     }
   }
 </style>

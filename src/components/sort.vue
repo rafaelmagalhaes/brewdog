@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-dropdown size="md" variant="outline-success" class="btn ml-2" no-caret>
+    <b-dropdown size="md" variant="outline-success" no-caret>
       <template v-slot:button-content>
         <i class="fas fa-filter"></i>
       </template>
@@ -10,16 +10,16 @@
   </section>
 </template>
 <script>
-import { BDropdown } from 'bootstrap-vue'
+  import { BDropdown } from 'bootstrap-vue'
 
-export default {
-  components: {
-    BDropdown
-  },
-  methods: {
-    sort (type) {
-      this.$store.dispatch('sortBeers', type)
+  export default {
+    components: {
+      BDropdown
+    },
+    methods: {
+      sort (type) {
+        this.$store.dispatch('sortBeers', type)
+      }
     }
   }
-}
 </script>

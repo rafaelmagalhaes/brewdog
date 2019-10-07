@@ -1,10 +1,14 @@
 <template>
   <section>
-    <form class="form-inline mt-2 mt-md-0" data-children-count="1">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search by name" v-model="name"
-             @keydown.enter="searchByName">
-      <button class="btn btn-outline-success my-2 my-sm-0" @click.prevent="searchByName">Search</button>
-    </form>
+    <div class="row" data-children-count="1">
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Search by name" v-model="name"
+               @keydown.enter="searchByName">
+      </div>
+      <div class="col-4">
+        <button class="btn btn-outline-success " @click.prevent="searchByName">Search</button>
+      </div>
+    </div>
   </section>
 </template>
 <script>
@@ -16,7 +20,7 @@ export default {
   },
   methods: {
     searchByName () {
-      if (this.name !== '') { // dont do a search if name is empty
+      if (this.name !== '') { // dont do a searh
         this.$store.dispatch('getBeers', { beer_name: this.name })
       }
     }
