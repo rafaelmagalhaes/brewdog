@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section>
     <div class="row">
       <div class="col-4" v-for="(beer,index) in beers" :key="index">
         <beer-list :beer="beer"/>

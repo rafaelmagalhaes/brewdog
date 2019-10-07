@@ -18,12 +18,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getBeers ({ commit }) {
-      http('beers', {
+    getBeers ({ commit }, payload) {
+      let config = {
         params: {
           per_page: 24
         }
-      }).then(res => {
+      }
+      if (payload) {
+        config.params.beer_name = payload.beer_name
+      }
+      http('beers', config).then(res => {
         commit('setBeers', res.data)
       }).catch(err => {
         console.log(err)

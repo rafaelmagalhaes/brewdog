@@ -1,0 +1,20 @@
+<template>
+  <section>
+    <b-dropdown size="md" variant="outline-success" class="btn ml-2" no-caret>
+      <template v-slot:button-content>
+        <i class="fas fa-filter"></i>
+      </template>
+      <b-dropdown-item href="#">First brewed</b-dropdown-item>
+      <b-dropdown-item href="#">ABV</b-dropdown-item>
+    </b-dropdown>
+  </section>
+</template>
+<script>
+import { BDropdown } from 'bootstrap-vue'
+
+export default {
+  components: {
+    BDropdown
+  }
+}
+</script>
