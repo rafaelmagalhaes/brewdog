@@ -16,13 +16,13 @@
 </template>
 
 <script>
-  import search from '@/components/search'
-  import sort from '@/components/sort'
+import search from '@/components/search'
+import sort from '@/components/sort'
 
-  export default {
-    components: {
-      search,
-      sort
-    }
+export default {
+  components: {
+    search,
+    sort
   }
+}
 </script>

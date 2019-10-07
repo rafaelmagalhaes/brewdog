@@ -16,7 +16,6 @@ export default {
   mounted () {
     this.$store.dispatch('getBeers')
   },
-
   computed: {
     beers () {
       return this.$store.getters.getBeers

@@ -4,8 +4,8 @@
       <template v-slot:button-content>
         <i class="fas fa-filter"></i>
       </template>
-      <b-dropdown-item href="#">First brewed</b-dropdown-item>
-      <b-dropdown-item href="#">ABV</b-dropdown-item>
+      <b-dropdown-item @click="sort('date')">First brewed</b-dropdown-item>
+      <b-dropdown-item @click="sort('abv')">ABV</b-dropdown-item>
     </b-dropdown>
   </section>
 </template>
@@ -15,6 +15,11 @@ import { BDropdown } from 'bootstrap-vue'
 export default {
   components: {
     BDropdown
+  },
+  methods: {
+    sort (type) {
+      this.$store.dispatch('sortBeers', type)
+    }
   }
 }
 </script>
