@@ -7,17 +7,26 @@
         <beer-list :beer="beer"/>
       </div>
     </div>
+    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+
   </section>
 </template>
 
 <script>
 import beerList from '@/components/beerList'
 import Loader from '@/components/loading'
-
+import InfiniteLoading from 'vue-infinite-loading'
 export default {
   name: 'home',
   mounted () {
     this.$store.dispatch('getBeers')
+  },
+  data () {
+    return {
+      per_page: 24,
+      limit: 80,
+      page: 1
+    }
   },
   computed: {
     loading () {
@@ -30,9 +39,28 @@ export default {
       return this.$store.getters.getBeers
     }
   },
+  methods: {
+    infiniteHandler ($state) {
+      setTimeout(async () => {
+        this.per_page += 24
+        this.page += 1
+        // check limit
+        if (this.per_page >= this.limit) {
+          this.per_page -= (this.per_page - this.limit)
+        }
+        await this.$store.dispatch('getBeers', { limit: this.per_page, page: this.page })
+        $state.loaded()
+
+        if (this.per_page === this.limit) {
+          $state.complete()
+        }
+      }, 1000)
+    }
+  },
   components: {
     beerList,
-    Loader
+    Loader,
+    InfiniteLoading
   }
 }
 </script>

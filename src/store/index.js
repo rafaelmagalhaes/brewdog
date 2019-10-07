@@ -56,17 +56,32 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getBeers ({ commit }, payload) {
+    async getBeers ({ commit, getters }, payload) {
       let config = {
         params: {
+          page: 1,
           per_page: 24
         }
       }
-      if (payload) {
+      if (payload && payload.beer_name) {
         config.params.beer_name = payload.beer_name
       }
-      http('beers', config).then(res => {
-        commit('setBeers', res.data)
+      if (payload && payload.limit > 24) {
+        config.params.per_page = payload.limit
+      }
+      if (payload && payload.page > 1) {
+        config.params.page = payload.page
+      }
+      await http('beers', config).then(res => {
+        if (payload && payload.limit > 24 && payload.page > 1) {
+          let beers = getters.getBeers
+          res.data.forEach(newRes => {
+            beers.push(newRes)
+          })
+          commit('setBeers', beers)
+        } else {
+          commit('setBeers', res.data)
+        }
       }).catch(err => {
         console.log(err)
       })

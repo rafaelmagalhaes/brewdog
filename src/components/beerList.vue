@@ -2,7 +2,8 @@
   <section>
     <div class="beer__Cards" @click="beerDetail(beer.id)">
       <div class="card mb-4 mt-3">
-        <img class="card-img-top m-auto" :src="beer.image_url" :alt="beer.name">
+        <img class="card-img-top m-auto" v-if="beer.image_url" :src="beer.image_url" :alt="beer.name">
+        <img src="https://www.underconsideration.com/brandnew/archives/brewdog_logo_detail.jpg"  v-else alt="">
         <hr>
         <div class="card-body">
           <h4 class="card-title">{{beer.name}}</h4>
