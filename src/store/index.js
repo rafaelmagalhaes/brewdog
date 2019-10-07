@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '../config/axios'
-import moment from 'moment'
 
 Vue.use(Vuex)
 
@@ -19,7 +18,7 @@ export default new Vuex.Store({
       state.beers = payload
     },
     setSingleBeer (state, payload) {
-      state.beer = payload
+      state.beer = payload[0]
     },
     sortByDate (state) {
       let sorted = state.beers
@@ -48,8 +47,8 @@ export default new Vuex.Store({
     async getSingleBeer ({ commit }, payload) {
       await http(`beers/${payload.id}`).then(res => {
         commit('setSingleBeer', res.data)
-      }).catch(res => {
-        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
       })
     },
     getBeers ({ commit }, payload) {

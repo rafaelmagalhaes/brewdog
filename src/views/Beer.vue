@@ -1,8 +1,18 @@
 <template>
   <section>
-   <pre>
-     {{beer}}
-   </pre>
+    <div class="row">
+      <div class="col-3">
+        <img :src="beer.image_url" class="img-fluid"/>
+      </div>
+      <div class="col">
+        <h1>{{beer.name}}</h1>
+        <p>{{beer.description}}</p>
+        <p>Ingredients</p>
+        <div v-for="(malt,index) in beer.ingredients.malt" :key="index">
+          {{malt.name}} {{ malt.amount}}
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -13,8 +23,8 @@ export default {
       route: this.$route.params
     }
   },
-  mounted () {
-    this.$store.dispatch('getSingleBeer', { id: this.route.id })
+  async mounted () {
+    await this.$store.dispatch('getSingleBeer', { id: this.route.id })
   },
   computed: {
     beer () {
