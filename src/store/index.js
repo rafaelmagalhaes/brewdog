@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '../config/axios'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -18,7 +19,11 @@ export default new Vuex.Store({
   },
   actions: {
     getBeers ({ commit }) {
-      http('beers').then(res => {
+      http('beers', {
+        params: {
+          per_page: 24
+        }
+      }).then(res => {
         commit('setBeers', res.data)
       }).catch(err => {
         console.log(err)

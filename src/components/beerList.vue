@@ -1,42 +1,48 @@
 <template>
   <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-4 beer__Cards" v-for="(beer,index) in beers" :key="index">
-          <div class="card mb-4 mt-3">
-            <img class="card-img-top m-auto" :src="beer.image_url" :alt="beer.name">
-            <div class="card-body">
-              <h4 class="card-title">{{beer.name}}</h4>
-              <p class="card-text">{{beer.tagline}}</p>
-              <p class="card-text">{{beer.first_brewed}}</p>
-
-              <p class="card-text">{{beer.abv}}</p>
-
-              <a href="#" class="btn btn-primary">See Profile</a>
-            </div>
-          </div>
+    <div class="beer__Cards" @click="beerDetail(beer.id)">
+      <div class="card mb-4 mt-3">
+        <img class="card-img-top m-auto" :src="beer.image_url" :alt="beer.name">
+        <hr>
+        <div class="card-body">
+          <h4 class="card-title">{{beer.name}}</h4>
+          <p class="card-text">{{beer.tagline}}</p>
+          <p class="card-text">First Brewed {{beer.first_brewed}}</p>
+          <p class="card-text">ABV {{beer.abv}}</p>
         </div>
       </div>
-
     </div>
-
   </section>
 </template>
 
 <script>
 export default {
   props: {
-    beers: {
+    beer: {
       required: true,
-      type: Array
+      type: Object
+    }
+  },
+  methods: {
+    beerDetail (id) {
+      alert(id)
     }
   }
 }
 </script>
 <style lang="scss">
   .beer__Cards {
-    height: 390px !important;
+
+    &:hover {
+      box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+
+    }
+    transition: box-shadow 0.5s  ease;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    height: 350px !important;
     margin-bottom: 2rem;
+    cursor: pointer;
 
     & .card {
       height: 100%;
@@ -47,8 +53,9 @@ export default {
     }
 
     & img {
-      height: 160px;
-      width: 60px;
+      padding-top: 1rem;
+      height: 120px;
+      object-fit: contain;
     }
   }
 
