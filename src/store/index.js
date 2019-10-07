@@ -10,14 +10,25 @@ export default new Vuex.Store({
     beer: {}
   },
   getters: {
-    getBeers: state => state.beers
+    getBeers: state => state.beers,
+    singleBeer: state => state.beer
   },
   mutations: {
     setBeers (state, payload) {
       state.beers = payload
+    },
+    setSingleBeer (state, payload) {
+      state.beer = payload
     }
   },
   actions: {
+    getSingleBeer ({ commit }, payload) {
+      http(`beers/${payload.id}`).then(res => {
+        commit('setSingleBeer', res.data)
+      }).catch(res => {
+        console.log(res.data)
+      })
+    },
     getBeers ({ commit }, payload) {
       let config = {
         params: {

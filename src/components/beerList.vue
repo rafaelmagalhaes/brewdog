@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     beerDetail (id) {
-      alert(id)
+      this.$router.push({ name: 'detail', params: { id: id } })
     }
   }
 }
