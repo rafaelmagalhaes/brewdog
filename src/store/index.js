@@ -7,11 +7,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     beers: [],
-    beer: {}
+    beer: {},
+    loading: false,
+    error: false
   },
   getters: {
     getBeers: state => state.beers,
-    singleBeer: state => state.beer
+    singleBeer: state => state.beer,
+    loading: state => state.loading,
+    error: state => state.error
+
   },
   mutations: {
     setBeers (state, payload) {

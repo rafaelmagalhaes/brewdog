@@ -16,7 +16,9 @@ export default {
   },
   methods: {
     searchByName () {
-      this.$store.dispatch('getBeers', { beer_name: this.name })
+      if (this.name !== '') { // dont do a search if name is empty
+        this.$store.dispatch('getBeers', { beer_name: this.name })
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="row">
+    <div class="row single__beer">
       <div class="col-3">
         <img :src="beer.image_url" class="img-fluid"/>
       </div>
@@ -8,9 +8,18 @@
         <h1>{{beer.name}}</h1>
         <p>{{beer.description}}</p>
         <p>Ingredients</p>
-        <div v-for="(malt,index) in beer.ingredients.malt" :key="index">
-          {{malt.name}} {{ malt.amount}}
-        </div>
+
+        <p>
+          <b>Malts</b> <span v-for="(malt,index) in beer.ingredients.malt" :key="index"> {{malt.name}}, </span>
+        </p>
+
+        <p>
+          <b>Hops</b> <span v-for="(hop,index) in beer.ingredients.hops" :key="index"> {{hop.name}}, </span>
+        </p>
+
+        <p>
+          <b>Yeast</b> <span> {{beer.ingredients.yeast}} </span>
+        </p>
       </div>
     </div>
   </section>
@@ -33,3 +42,11 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+  .single__beer {
+    & img {
+      object-fit: contain;
+      height: 50%;
+    }
+  }
+</style>
