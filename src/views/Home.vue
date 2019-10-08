@@ -2,7 +2,7 @@
   <section>
     <Loader v-if="loading && !error" />
     <span v-if="error">{{error}}</span>
-    <div class="row" v-if="!loading">
+    <div class="row">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4" v-for="(beer,index) in beers" :key="index">
         <beer-list :beer="beer"/>
       </div>

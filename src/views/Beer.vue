@@ -1,11 +1,12 @@
 <template>
   <section>
-    <div class="row single__beer">
+    <div class="row single__beer" v-if="beer.name">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
         <img  v-if="beer.image_url" :src="beer.image_url" class="img-fluid"/>
       </div>
-      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-9">
-        <h1>{{beer.name}}</h1>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-9 text-center">
+        <h1 class="text-center">{{beer.name}}</h1>
+        <hr>
         <p>{{beer.description}}</p>
         <p>Ingredients</p>
 
