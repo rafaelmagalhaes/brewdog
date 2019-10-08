@@ -1,5 +1,10 @@
 # brewdog
 
+## Demo
+
+brewdog.rrrm.co.uk
+
+
 ## Project setup
 ```
 npm install
@@ -17,7 +22,7 @@ npm run build
 
 ### Run your tests
 ```
-npm run test
+npm run test:unit
 ```
 
 ### Lints and fixes files
